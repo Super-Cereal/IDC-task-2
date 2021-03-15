@@ -1,4 +1,4 @@
-let diagramPageParser = (controlPanel, commits) => {
+let diagramPageParser = (controlPanel) => {
   // сформируем данные для страницы круговой диаграммы
   let sprintId = controlPanel.getCurrentSprintId();
   let parsedData = {

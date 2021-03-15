@@ -7,7 +7,7 @@ let activityPageParser = require("./activity").activityPageParser;
 let controlPanel = {
   init: (entities, sprintId) => {
     this.sprintId = sprintId;
-    // сформировал обьект this.entities = { entityName: Entity[] | { entityId: Entity }[] }
+    // сформировал обьект this.entities = { entityName: Entity[] | { entityId: Entity[] } }
     this.entities = {
       User: {},
       Project: [],

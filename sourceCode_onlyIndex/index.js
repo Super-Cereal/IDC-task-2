@@ -71,7 +71,7 @@ let chartPageParser = (controlPanel, topUsers, commits) => {
   }
   return parsedData;
 };
-let diagramPageParser = (controlPanel, commits) => {
+let diagramPageParser = (controlPanel) => {
   // сформируем данные для страницы круговой диаграммы
   let sprintId = controlPanel.getCurrentSprintId();
   let parsedData = {
@@ -360,8 +360,8 @@ let activityPageParser = (controlPanel, sprint, commits) => {
 
 let controlPanel = {
   init: (entities, sprintId) => {
-    this.sprintId = sprintId;
     // сформировал обьект this.entities = { entityName: Entity[] | { entityId: Entity }[] }
+    this.sprintId = sprintId;
     this.entities = {
       User: {},
       Project: [],
