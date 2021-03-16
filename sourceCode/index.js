@@ -89,7 +89,7 @@ let prepareData = (entities, { sprintId }) => {
   let curSprint = controlPanel.getSprintById(sprintId);
   let curCommits = controlPanel.getSprintCommits(curSprint);
 
-  let leadersData = leadersPageParser(controlPanel, curCommits);
+  let leadersData = leadersPageParser(controlPanel, curCommits, sprintId);
   let chartData = chartPageParser(
     controlPanel,
     leadersData.data.users.slice(0, 3),

@@ -24,13 +24,13 @@ let votePageParser = (controlPanel, sprint) => {
   }));
   return parsedData;
 };
-let leadersPageParser = (controlPanel, commits) => {
+let leadersPageParser = (controlPanel, commits, sprintId) => {
   // сформируем данные для страницы лидеров
   let parsedData = {
     alias: "leaders",
     data: {
       title: "Больше всего коммитов",
-      subtitle: `Спринт № ${controlPanel.getCurrentSprintId()}`,
+      subtitle: "Спринт № " + sprintId,
       emoji: "👑",
       users: [],
     },
@@ -443,7 +443,7 @@ let prepareData = (entities, { sprintId }) => {
   let curSprint = controlPanel.getSprintById(sprintId);
   let curCommits = controlPanel.getSprintCommits(curSprint);
 
-  let leadersData = leadersPageParser(controlPanel, curCommits);
+  let leadersData = leadersPageParser(controlPanel, curCommits, sprintId);
   let chartData = chartPageParser(
     controlPanel,
     leadersData.data.users.slice(0, 3),

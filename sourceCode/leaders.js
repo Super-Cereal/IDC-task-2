@@ -1,10 +1,11 @@
-let leadersPageParser = (controlPanel, commits) => {
+let leadersPageParser = (controlPanel, commits, sprintId) => {
   // сформируем данные для страницы лидеров
+  let sprintId = controlPanel.getCurrentSprintId()
   let parsedData = {
     alias: "leaders",
     data: {
       title: "Больше всего коммитов",
-      subtitle: `Спринт № ${controlPanel.getCurrentSprintId()}`,
+      subtitle: `Спринт № ${sprintId}`,
       emoji: "👑",
       users: [],
     },
