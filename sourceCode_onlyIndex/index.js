@@ -2,7 +2,7 @@ let votePageParser = (controlPanel, sprint) => {
   // сформируем данные для страницы голосования
   let sprintId = controlPanel.getCurrentSprintId();
   let parsedData = {
-    alias: "leaders",
+    alias: "vote",
     data: {
       title: "Самый 🔎 внимательный разработчик",
       subtitle: `Спринт № ${sprintId}`,
