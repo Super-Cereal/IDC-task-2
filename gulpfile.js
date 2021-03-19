@@ -5,9 +5,9 @@ const concat = require("gulp-concat");
 
 gulp.task("default", () =>
   gulp
-    .src("sourceCode/**/*.js")
+    .src("build/**/*.js")
     .pipe(sourcemaps.init())
-    .pipe(concat("index.js"))
+    // .pipe(concat("index.js"))
     .pipe(uglify())
     .pipe(sourcemaps.write("."))
     .pipe(gulp.dest("build"))
