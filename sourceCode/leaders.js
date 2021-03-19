@@ -1,23 +1,26 @@
-let leadersPageParser = (controlPanel, commits) => {
+let leadersPageParser = (controlPanel) => {
   // сформируем данные для страницы лидеров
-  let sprintId = controlPanel.getCurrentSprintId()
+  let curSprint = controlPanel.getCurrentSprint();
   let parsedData = {
     alias: "leaders",
     data: {
       title: "Больше всего коммитов",
-      subtitle: `Спринт № ${sprintId}`,
+      subtitle: curSprint.name,
       emoji: "👑",
       users: [],
     },
   };
 
-  let users = controlPanel.getUsers();
-  let usersCommits = controlPanel.countCommitsByUsers(commits);
+  let commits = controlPanel.getCurrentCommits()
+  let usersCommitsCount = controlPanel.countUsersCommits(commits);
+  let users = controlPanel.getAllUsers();
   for (let userId in users) {
-    let x = { ...users[userId], valueText: usersCommits[userId] };
+    let x = { ...users[userId], valueText: `${usersCommitsCount[userId]}` };
     parsedData.data.users.push(x);
   }
+  // сортируем в порядке убывания числа коммитов
   parsedData.data.users.sort((prev, cur) => cur.valueText - prev.valueText);
+
   return parsedData;
 };
 

@@ -1,11 +1,11 @@
 let diagramPageParser = (controlPanel) => {
   // сформируем данные для страницы круговой диаграммы
-  let sprintId = controlPanel.getCurrentSprintId();
+  let curSprint = controlPanel.getCurrentSprint();
   let parsedData = {
     alias: "diagram",
     data: {
       title: "Размер коммитов",
-      subtitle: `Спринт № ${sprintId}`,
+      subtitle: curSprint.name,
       totalText: "",
       differenceText: "",
       categories: [
@@ -17,9 +17,10 @@ let diagramPageParser = (controlPanel) => {
     },
   };
 
-  function countSizeOfCommitsOfSprint(controlPanel, sprintId) {
-    let summaries = controlPanel.getSummaries();
-    let commits = controlPanel.getSprintCommits(controlPanel.getSprintById(sprintId));
+  function countSizeOfCommitsOfSprint(controlPanel, sprint) {
+    let summaries = controlPanel.getAllSummaries();
+    let commits = controlPanel.getSprintCommits(sprint);
+
     // [0: > 1001, 1: 501 - 1000, 2: 101 - 500, 3: 1 - 100]
     let res = [0, 0, 0, 0];
     commits.forEach((commit) => {
@@ -35,19 +36,27 @@ let diagramPageParser = (controlPanel) => {
     });
     return res;
   }
-  let sum = (array) => array.reduce((prev, cur) => prev + cur);
+  const sum = (array) => array.reduce((prev, cur) => prev + cur);
 
-  let lastSizes = countSizeOfCommitsOfSprint(controlPanel, sprintId - 1);
-  let curSizes = countSizeOfCommitsOfSprint(controlPanel, sprintId);
-  parsedData.data.totalText = `${sum(curSizes)} коммита`;
+  let lastSprint = controlPanel.getSprintById(curSprint.id - 1);
+  let lastSizes = countSizeOfCommitsOfSprint(controlPanel, lastSprint);
+  let curSizes = countSizeOfCommitsOfSprint(controlPanel, curSprint);
+  let word;
+
+  word = controlPanel.getNoun(sum(curSizes), "коммит", "коммита", "коммитов");
+  parsedData.data.totalText = `${sum(curSizes)} ${word}`;
   let val = sum(curSizes) - sum(lastSizes);
   parsedData.data.differenceText = `${val >= 0 ? "+" : ""}${val} с прошлого спринта`;
 
   for (let i = 0; i < 4; i++) {
-    parsedData.data.categories[i].valueText = `${curSizes[i]} коммитов`;
+    word = controlPanel.getNoun(curSizes[i], "коммит", "коммита", "коммитов");
+    parsedData.data.categories[i].valueText = `${curSizes[i]} ${word}`;
+
     let val = curSizes[i] - lastSizes[i];
+    word = controlPanel.getNoun(val, "коммит", "коммита", "коммитов");
     parsedData.data.categories[i].differenceText = `${val >= 0 ? "+" : ""}${val} коммитов`;
   }
+
   return parsedData;
 };
 
