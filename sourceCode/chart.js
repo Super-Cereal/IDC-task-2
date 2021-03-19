@@ -13,7 +13,8 @@ let chartPageParser = (controlPanel, topUsers, commits) => {
 
   let values = parsedData.data.values;
   for (let i = -6; i < 4; i++) {
-    if (i === 0) values.push({ title: sprintId, value: commits.length, active: true });
+    if (i === 0)
+      values.push({ title: sprintId, value: commits.length, active: true });
     else if (sprintId + i <= 0) continue;
     else {
       let sprint = controlPanel.getSprintById(sprintId + i);

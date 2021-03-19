@@ -1,4 +1,4 @@
-let leadersPageParser = (controlPanel, commits, sprintId) => {
+let leadersPageParser = (controlPanel, commits) => {
   // сформируем данные для страницы лидеров
   let sprintId = controlPanel.getCurrentSprintId()
   let parsedData = {

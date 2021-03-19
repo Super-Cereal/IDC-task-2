@@ -1,4 +1,3 @@
-data.json
-input.json
+package-lock.json
 
-.prettierrc
+node_modules

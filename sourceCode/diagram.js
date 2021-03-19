@@ -9,10 +9,10 @@ let diagramPageParser = (controlPanel) => {
       totalText: "",
       differenceText: "",
       categories: [
-        { title: "> 1001 строки", valueText: "30 коммитов", differenceText: "+8 коммитов" },
-        { title: "501 — 1000 строк", valueText: "32 коммита", differenceText: "+6 коммитов" },
-        { title: "101 — 500 строк", valueText: "58 коммитов", differenceText: "+16 коммитов" },
-        { title: "1 — 100 строк", valueText: "62 коммита", differenceText: "+12 коммитов" },
+        { title: "> 1001 строки", valueText: "", differenceText: "" },
+        { title: "501 — 1000 строк", valueText: "", differenceText: "" },
+        { title: "101 — 500 строк", valueText: "", differenceText: "" },
+        { title: "1 — 100 строк", valueText: "", differenceText: "" },
       ],
     },
   };
