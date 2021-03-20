@@ -16,8 +16,10 @@ let chartPageParser = (controlPanel, topUsers) => {
 
   let sprints = controlPanel.getAllSprints();
   sprints.forEach((sprint) => {
+    // формируем шаблон для любого спринта
     let obj = { title: sprint.id, hint: sprint.name };
     if (sprint.id === curSprint.id) {
+      // если обрабатывается текущий спринт, то добавляет параметр activity
       obj.value = curCommits.length;
       obj.active = true;
     } else obj.value = controlPanel.getSprintCommits(sprint).length;

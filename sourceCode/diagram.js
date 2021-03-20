@@ -18,12 +18,15 @@ let diagramPageParser = (controlPanel) => {
   };
 
   function countSizeOfCommitsOfSprint(controlPanel, sprint) {
+    // распределяет длины коммитов за спринт по категориям.
     let summaries = controlPanel.getAllSummaries();
     let commits = controlPanel.getSprintCommits(sprint);
 
-    // [0: > 1001, 1: 501 - 1000, 2: 101 - 500, 3: 1 - 100]
+    // res = [0: > 1001, 1: 501 - 1000, 2: 101 - 500, 3: 1 - 100]
     let res = [0, 0, 0, 0];
     commits.forEach((commit) => {
+      // считает размер коммита и прибавляет счетчик
+      // той категории, которой этот размер подходит.
       let size = 0;
       commit.summaries.forEach((summary) => {
         let summaryId = summary.id ?? summary;
@@ -46,6 +49,7 @@ let diagramPageParser = (controlPanel) => {
   word = controlPanel.getNoun(sum(curSizes), "коммит", "коммита", "коммитов");
   parsedData.data.totalText = `${sum(curSizes)} ${word}`;
   let val = sum(curSizes) - sum(lastSizes);
+  // если val >= 0, то необходимо добавить "+", если < 0, то минус и так будет.
   parsedData.data.differenceText = `${val >= 0 ? "+" : ""}${val} с прошлого спринта`;
 
   for (let i = 0; i < 4; i++) {

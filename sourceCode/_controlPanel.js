@@ -125,7 +125,7 @@ const ControlPanel = class {
     return likesToCommentsByUsers;
   }
   getNoun(number, one, two, five) {
-    // сколоняет слово one_two_five в зависимости от числа
+    // сколоняет слово one_two_five в зависимости от числа number
     let n = Math.abs(number);
     n %= 100;
     if (n >= 5 && n <= 20) {

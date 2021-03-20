@@ -17,13 +17,11 @@ let votePageParser = (controlPanel) => {
     let x = { ...users[userId], valueText: usersLikesCount[userId] };
     parsedData.data.users.push(x);
   }
+  // сортируем юзеров в порядке убывания числа лайков к их комментариям
   parsedData.data.users.sort((prev, cur) => cur.valueText - prev.valueText);
   parsedData.data.users = parsedData.data.users.map((user) => {
-    let word = controlPanel.getNoun(user.valueText, "голос", "голоса", "голосов")
-    return {
-      ...user,
-      valueText: `${user.valueText} ${word}`,
-    };
+    let word = controlPanel.getNoun(user.valueText, "голос", "голоса", "голосов");
+    return { ...user, valueText: `${user.valueText} ${word}` };
   });
   return parsedData;
 };

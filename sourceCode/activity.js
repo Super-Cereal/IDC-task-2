@@ -21,10 +21,10 @@ let activityPageParser = (controlPanel) => {
   let data = parsedData.data.data;
   let curCommits = controlPanel.getCurrentCommits();
   curCommits.forEach((commit) => {
-    let sinceWeekStart = commit.timestamp - curSprint.startAt;
-    let day = Math.floor(sinceWeekStart / (24 * 60 * 60 * 1000));
-    let sinceDayStart = sinceWeekStart % (24 * 60 * 60 * 1000);
-    let hour = sinceDayStart / (60 * 60 * 1000);
+    let msSinceWeekStart = commit.timestamp - curSprint.startAt;
+    let day = Math.floor(msSinceWeekStart / (24 * 60 * 60 * 1000));
+    let msSinceDayStart = msSinceWeekStart % (24 * 60 * 60 * 1000);
+    let hour = msSinceDayStart / (60 * 60 * 1000);
     // баг в output.json или еще где, но пришлось ставить проверку -
     // если прошло 0.9 первого дня - то это уже второй день, зн прибавим единицу
     hour = Math.floor(hour) + (hour % 1 > 0.9 ? 1 : 0);
